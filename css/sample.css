@@ -1,0 +1,105 @@
+body{
+    margin:0;
+    padding:0;
+    text-align:left;
+    font-size: 32px;
+    text-align: center;
+}
+header{
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    height: 50px;
+}
+
+h1{
+    font-size: 30px;
+}
+
+main{
+    border-bottom:1px solid #ccc;
+}
+footer{
+    background-color: #fff;
+    border-bottom:1px solid #ccc;
+    text-align: center;
+}
+p{
+    font-size:20px;
+    text-align: center;
+    border-bottom:1px solid #fff;
+}
+ul{
+    padding: 0;
+    border-top: 1px solid #000000;
+    display:table;  /* 定義 */
+    table-layout: fixed;
+    width:100%;
+}
+li{
+    list-style-type:none;
+    border: 1px solid #666;
+    background-color: #FFF;
+    display:table-cell;  /* 定義 */
+    cursor: pointer;
+}
+li:hover{
+    background: #0066CC;
+    color:#fff;
+}
+
+.jankenGame{
+    display: flex;
+    justify-content: space-between;
+    max-width :1500px;
+    margin: 0auto;
+}
+
+#janken{
+    width: 800px;
+}
+
+#score::before{
+    content: "今回は";
+}
+
+#score::after{
+    content: "点";
+}
+
+.inner-result::before{
+    content: "合計";
+}
+
+.inner-result::after{
+    content: "点";
+}
+
+.outer-result{
+    display:none;
+}
+
+.outer-result::before{
+    content: "合計";
+}
+
+.outer-result::after{
+    content: "点でした。次回も頑張ろう";
+}
+
+
+#time::before{
+    content: "経過時間：";
+}
+
+#time::after{
+    content: "秒";
+}
+
+#chart_div{
+width: 700px;
+height: 500px;
+}
+
+
+
