@@ -21,45 +21,42 @@
     </header>
 
     <main>
-    <!-- タイポグラフィー -->
-
-
-    <!-- タイポグラフィーここまで -->
-
+    <div class="wrapper">
     <div class="timer">
-        <div>時間を決めてじゃんけんする</div>
+        <p>時間を決めてじゃんけんする</p>
         <input id="sec" type="text">
         <button id="start">開始</button>
         
-        <div id="time"></div>
+        <p id="time"></p>
     </div>
 
     <div class="jankenGame">
         <div id="janken">
-            <div>あなたの出す手は？</div>
+            <p>あなたの出す手は？</p>
             <ul>
                 <li id="gu_btn" class="option"><img src="./img/gu.png" alt=""  width="100px"></li>
                 <li id="cho_btn" class="option"><img src="./img/choki.png" alt=""  width="100px"></li>
                 <li id="par_btn" class="option"><img src="./img/pa.png" alt=""  width="100px"></li>
             </ul>
-            <div>コンピュータの出した手は？</div>
+            <p>コンピュータの出した手は？</p>
             <div><span id="pc_hands"></span></div>
-            <div id="result-list">
-                <div id="judgment"></div>
-                <div id="score"></div>
-                <div class="total inner-result"></div>
-                <div class="total outer-result"></div>
-            </div>
+        </div>
+        <div id="result-list">
+            <p id="judgment"></p>
+            <p id="score"></p>
+            <p class="total inner-result"></p>
+            <p class="total outer-result"></p>
+            <p class="often"></p>
+            <p class="average"></p>
         </div>
         
-        <div class="winRate">
-            <div id="winRate_div"></div>
-        </div>
+        
         <div class="chart">
             <div id="chart_div"></div>
         </div>
     </div>
     <div class="total outer-result"></div>
+    </div>
     </main>
 
 <footer><button><a href="./3s-janken.html">３秒じゃんけんもやってみる</a></button></footer>
@@ -77,7 +74,6 @@
             if(count == sec.value){
                 $(".jankenGame").hide();
                 $('.timer').hide();
-                // $('.inner-result').hide();
                 $('.outer-result').show();
 
                 clearInterval(set_id);
@@ -95,7 +91,9 @@
 let total = 0; 
 let hand = "";//変数用意
 let judge = ""; //変数用意
-let score; //変数用意
+let score; //変数用意：点数
+let often = 0;//変数用意：回数
+let winRate; //変数用意：勝率
 
 
 // グーを選んだ時
@@ -126,16 +124,20 @@ if(r==3){
     hand = '<img src="./img/pa.png" width="100px">';
     judge = '負け';
     score = -1;
+
 }
 
-
+often++;
 total += score;
+
 
 //3.表示処理
 $("#pc_hands").html(hand);
 $("#judgment").html(judge);
 $("#score").html(score);
 $(".total").text(total);
+$(".often").html(often);
+$(".average").html(total/often);
 
 updateChart(total);
 
@@ -150,6 +152,7 @@ if(r==1){
     hand = '<img src="./img/gu.png" width="100px">';
     judge = '負け';
     score = -1;
+    $('')
 }
 if(r==2){
     hand = '<img src="./img/choki.png" width="100px">';
@@ -168,7 +171,7 @@ if(r==3){
         });
 
 }
-
+often++;
 total += score;
 
 //3.表示処理
@@ -176,6 +179,8 @@ $("#pc_hands").html(hand);
 $("#judgment").html(judge);
 $("#score").html(score);
 $(".total").text(total);
+$(".often").html(often);
+$(".average").html(total/often);
 
 updateChart(total);
 
@@ -206,6 +211,7 @@ if(r==3){
     judge = 'あいこ';
     score = 0;
 }
+often++;
 total += score;
 
 //3.表示処理
@@ -213,6 +219,8 @@ $("#pc_hands").html(hand);
 $("#judgment").html(judge);
 $("#score").html(score);
 $(".total").text(total);
+$(".often").html(often);
+$(".average").html(total/often);
 
 updateChart(total);
 });

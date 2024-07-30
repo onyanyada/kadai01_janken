@@ -23,21 +23,23 @@
 </p>
 <div id="temporaryBox" style="display: none;">
    <p>3秒以内でできるだけ多く点数を稼いでください。</p>
+  
     <div id="janken">
-        <div>あなたの出す手は？</div>
+        <p>あなたの出す手は？</p>
         <ul>
             <li id="gu_btn" class="option"><img src="./img/gu.png" alt=""  width="100px"></li>
             <li id="cho_btn" class="option"><img src="./img/choki.png" alt=""  width="100px"></li>
             <li id="par_btn" class="option"><img src="./img/pa.png" alt=""  width="100px"></li>
         </ul>
-        <div>コンピュータの出した手は？</div>
-        <div><span id="pc_hands"></span></div>
+        <p>コンピュータの出した手は？</p>
+        <p><span id="pc_hands"></span></p>
         <div id="result-list">
-            <div id="judgment"></div>
-            <div id="score"></div>
-            <div class="total inner-result"></div>
+            <p id="judgment"></p>
+            <p id="score"></p>
+            <p class="total inner-result"></p>
         </div>
     </div>
+    
 </div>
 <p class="total outer-result"></p>
     <div>
@@ -54,7 +56,7 @@
         setTimeout(function(){
             $('#temporaryBox').fadeOut()
             $('.outer-result').show()
-        },3000);
+        },10000000000000);
     });
 
 

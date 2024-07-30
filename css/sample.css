@@ -1,10 +1,10 @@
 body{
     margin:0;
     padding:0;
-    text-align:left;
     font-size: 32px;
     text-align: center;
 }
+
 header{
     background-color: #fff;
     border-bottom: 1px solid #ccc;
@@ -17,11 +17,16 @@ h1{
 }
 
 main{
+    
+}
+
+.wrapper{
+    max-width :1500px;
+    margin: 0auto;
 
 }
-footer{
-    text-align: center;
-}
+
+
 p{
     font-size:20px;
     text-align: center;
@@ -44,23 +49,35 @@ li img:hover{
     opacity: 0.5;
 }
 
-#particle{
-    display: none;
+footer{
+    text-align: center;
 }
 
+/* タイマー */
+#time::before{
+    content: "経過時間：";
+}
+
+#time::after{
+    content: "秒";
+}
 
 .jankenGame{
     display: flex;
     justify-content: space-between;
-    max-width :1500px;
+    width:1400px;
     margin: 0auto;
+
 }
 
-
-
 #janken{
-    width: 100%;
+    width: 400px;
     margin: 0auto;
+
+}
+
+#result-list{
+    width: 300px;
 }
 
 #judgment::before{
@@ -95,14 +112,14 @@ li img:hover{
     content: "点でした。次回も頑張ろう";
 }
 
-
-#time::before{
-    content: "経過時間：";
+.often::before{
+    content: "試合回数：";  
 }
 
-#time::after{
-    content: "秒";
+.average::before{
+    content: "平均点：";
 }
+
 
 #chart_div{
 width: 700px;
