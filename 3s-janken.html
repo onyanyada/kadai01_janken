@@ -54,10 +54,13 @@
         $('#btnShowBox').click(function () {
             $('#temporaryBox').show();
             $('.outer-result').hide();
+            $('#btnShowBox').fadeOut()
             setTimeout(function () {
                 $('#temporaryBox').fadeOut()
                 $('.outer-result').show()
-            }, 10000000000000);
+                $('#btnShowBox').show()
+
+            }, 3000);
         });
 
 

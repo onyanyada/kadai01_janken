@@ -96,6 +96,14 @@ footer {
     content: "点";
 }
 
+.often::before {
+    content: "試合回数：";
+}
+
+.average::before {
+    content: "平均点：";
+}
+
 .outer-result {
     display: none;
 }
@@ -105,15 +113,11 @@ footer {
 }
 
 .outer-result::after {
-    content: "点でした。次回も頑張ろう";
+    content: "点でした。";
 }
 
-.often::before {
-    content: "試合回数：";
-}
-
-.average::before {
-    content: "平均点：";
+.repeat {
+    display: none;
 }
 
 
