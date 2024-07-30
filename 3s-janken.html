@@ -7,7 +7,8 @@
     <script src="js/jquery-2.1.3.min.js"></script>
     <link rel="stylesheet" href="css/sample.css">
     <title>じゃんけん</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
 
 </head>
 
@@ -17,177 +18,177 @@
         <h1>3秒じゃんけん</h1>
     </header>
 
-<main>
-<p>
-   <input type="button" value="3秒以内でじゃんけんをする" id="btnShowBox" onclick="showBox();">
-</p>
-<div id="temporaryBox" style="display: none;">
-   <p>3秒以内でできるだけ多く点数を稼いでください。</p>
-  
-    <div id="janken">
-        <p>あなたの出す手は？</p>
-        <ul>
-            <li id="gu_btn" class="option"><img src="./img/gu.png" alt=""  width="100px"></li>
-            <li id="cho_btn" class="option"><img src="./img/choki.png" alt=""  width="100px"></li>
-            <li id="par_btn" class="option"><img src="./img/pa.png" alt=""  width="100px"></li>
-        </ul>
-        <p>コンピュータの出した手は？</p>
-        <p><span id="pc_hands"></span></p>
-        <div id="result-list">
-            <p id="judgment"></p>
-            <p id="score"></p>
-            <p class="total inner-result"></p>
+    <main>
+        <p>
+            <input type="button" value="3秒以内でじゃんけんをする" id="btnShowBox" onclick="showBox();">
+        </p>
+        <div id="temporaryBox" style="display: none;">
+            <p>3秒以内でできるだけ多く点数を稼いでください。</p>
+
+            <div id="janken">
+                <p>あなたの出す手は？</p>
+                <ul>
+                    <li id="gu_btn" class="option"><img src="./img/gu.png" alt="" width="100px"></li>
+                    <li id="cho_btn" class="option"><img src="./img/choki.png" alt="" width="100px"></li>
+                    <li id="par_btn" class="option"><img src="./img/pa.png" alt="" width="100px"></li>
+                </ul>
+                <p>コンピュータの出した手は？</p>
+                <p><span id="pc_hands"></span></p>
+                <div id="result-list">
+                    <p id="judgment"></p>
+                    <p id="score"></p>
+                    <p class="total inner-result"></p>
+                </div>
+            </div>
+
         </div>
-    </div>
-    
-</div>
-<p class="total outer-result"></p>
-    <div>
-        <button><a href="./timer-janken.html">タイマーじゃんけんもやってみる</a></button>
-    </div>
-</main>
+        <p class="total outer-result"></p>
+        <div>
+            <button><a href="./timer-janken.html">タイマーじゃんけんもやってみる</a></button>
+        </div>
+    </main>
 
     <footer></footer>
     <script>
-    //タイマー
-    $('#btnShowBox').click(function(){
-        $('#temporaryBox').show();
-        $('.outer-result').hide();
-        setTimeout(function(){
-            $('#temporaryBox').fadeOut()
-            $('.outer-result').show()
-        },10000000000000);
-    });
-
-
-   
-    // 勝敗合計点数
-    let total = 0; 
-    let hand = "";//変数用意
-    let judge = ""; //変数用意
-    let score; //変数用意
-    
-
- // グーを選んだ時
-$("#gu_btn").on("click",function(){
-const r =Math.ceil(Math.random()*3);//1.乱数(1~3)
-
-
-//2.if分岐処理
-
-if(r==1){
-    hand = '<img src="./img/gu.png" width="100px">';
-    judge = 'あいこ';
-    score = 0;
-    
-}
-if(r==2){
-    hand = '<img src="./img/choki.png" width="100px">';
-    judge = '勝ち';
-    score = 1;
-    // 紙吹雪
-    confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 }
-            });
-}
-if(r==3){
-    hand = '<img src="./img/pa.png" width="100px">';
-    judge = '負け';
-    score = -1;
-}
-
-
-total += score;
-
-//3.表示処理
-$("#pc_hands").html(hand);
-$("#judgment").html(judge);
-$("#score").html(score);
-$(".total").text(total);
-
-updateChart(total);
-
-});
-
-// チョキを選んだ時
-$("#cho_btn").on("click",function(){
-const r =Math.ceil(Math.random()*3);//1.乱数(1~3)
-
-//2.if分岐処理
-if(r==1){
-    hand = '<img src="./img/gu.png" width="100px">';
-    judge = '負け';
-    score = -1;
-}
-if(r==2){
-    hand = '<img src="./img/choki.png" width="100px">';
-    judge = 'あいこ';
-    score = 0;
-}
-if(r==3){
-    hand = '<img src="./img/pa.png" width="100px">';
-    judge = '勝ち';
-    score = 1;
-    // 紙吹雪
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
+        //タイマー
+        $('#btnShowBox').click(function () {
+            $('#temporaryBox').show();
+            $('.outer-result').hide();
+            setTimeout(function () {
+                $('#temporaryBox').fadeOut()
+                $('.outer-result').show()
+            }, 10000000000000);
         });
 
-}
 
-total += score;
 
-//3.表示処理
-$("#pc_hands").html(hand);
-$("#judgment").html(judge);
-$("#score").html(score);
-$(".total").text(total);
+        // 勝敗合計点数
+        let total = 0;
+        let hand = "";//変数用意
+        let judge = ""; //変数用意
+        let score; //変数用意
 
-updateChart(total);
 
-});
+        // グーを選んだ時
+        $("#gu_btn").on("click", function () {
+            const r = Math.ceil(Math.random() * 3);//1.乱数(1~3)
 
-// パーを選んだ時
-$("#par_btn").on("click",function(){
-const r =Math.ceil(Math.random()*3);//1.乱数(1~3)
-//2.if分岐処理
-if(r==1){
-    hand = '<img src="./img/gu.png" width="100px">';
-    judge = '勝ち';
-    score = 1;
-    // 紙吹雪
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
+
+            //2.if分岐処理
+
+            if (r == 1) {
+                hand = '<img src="./img/gu.png" width="100px">';
+                judge = 'あいこ';
+                score = 0;
+
+            }
+            if (r == 2) {
+                hand = '<img src="./img/choki.png" width="100px">';
+                judge = '勝ち';
+                score = 1;
+                // 紙吹雪
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+            if (r == 3) {
+                hand = '<img src="./img/pa.png" width="100px">';
+                judge = '負け';
+                score = -1;
+            }
+
+
+            total += score;
+
+            //3.表示処理
+            $("#pc_hands").html(hand);
+            $("#judgment").html(judge);
+            $("#score").html(score);
+            $(".total").text(total);
+
+            updateChart(total);
+
         });
-}
-if(r==2){
-    hand = '<img src="./img/choki.png" width="100px">';
-    judge = '負け';
-    score = -1;
-}
-if(r==3){
-    hand = '<img src="./img/pa.png" width="100px">';
-    judge = 'あいこ';
-    score = 0;
-}
-total += score;
 
-    
-    //3.表示処理
-    $("#pc_hands").html(hand);
-    $("#judgment").html(judge);
-    $("#score").html(score);
-    $(".total").text(total);
-    });
+        // チョキを選んだ時
+        $("#cho_btn").on("click", function () {
+            const r = Math.ceil(Math.random() * 3);//1.乱数(1~3)
+
+            //2.if分岐処理
+            if (r == 1) {
+                hand = '<img src="./img/gu.png" width="100px">';
+                judge = '負け';
+                score = -1;
+            }
+            if (r == 2) {
+                hand = '<img src="./img/choki.png" width="100px">';
+                judge = 'あいこ';
+                score = 0;
+            }
+            if (r == 3) {
+                hand = '<img src="./img/pa.png" width="100px">';
+                judge = '勝ち';
+                score = 1;
+                // 紙吹雪
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+
+            }
+
+            total += score;
+
+            //3.表示処理
+            $("#pc_hands").html(hand);
+            $("#judgment").html(judge);
+            $("#score").html(score);
+            $(".total").text(total);
+
+            updateChart(total);
+
+        });
+
+        // パーを選んだ時
+        $("#par_btn").on("click", function () {
+            const r = Math.ceil(Math.random() * 3);//1.乱数(1~3)
+            //2.if分岐処理
+            if (r == 1) {
+                hand = '<img src="./img/gu.png" width="100px">';
+                judge = '勝ち';
+                score = 1;
+                // 紙吹雪
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+            if (r == 2) {
+                hand = '<img src="./img/choki.png" width="100px">';
+                judge = '負け';
+                score = -1;
+            }
+            if (r == 3) {
+                hand = '<img src="./img/pa.png" width="100px">';
+                judge = 'あいこ';
+                score = 0;
+            }
+            total += score;
 
 
-   
+            //3.表示処理
+            $("#pc_hands").html(hand);
+            $("#judgment").html(judge);
+            $("#score").html(score);
+            $(".total").text(total);
+        });
+
+
+
     </script>
 </body>
 

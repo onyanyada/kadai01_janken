@@ -1,131 +1,123 @@
-body{
-    margin:0;
-    padding:0;
+body {
+    margin: 0;
+    padding: 0;
     font-size: 32px;
     text-align: center;
 }
 
-header{
+header {
     background-color: #fff;
     border-bottom: 1px solid #ccc;
     text-align: center;
     height: 50px;
 }
 
-h1{
+h1 {
     font-size: 30px;
 }
 
-main{
-    
-}
-
-.wrapper{
-    max-width :1500px;
-    margin: 0auto;
-
-}
-
-
-p{
-    font-size:20px;
+p {
+    font-size: 20px;
     text-align: center;
-    border-bottom:1px solid #fff;
-}
-ul{
-    padding: 0;
-    display:flex;  /* 定義 */
-    justify-content: center;
-    width:100%;
+    border-bottom: 1px solid #fff;
 }
 
-li{
-    list-style-type:none;
+ul {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+li {
+    list-style-type: none;
     cursor: pointer;
     border-radius: 50%;
 }
 
-li img:hover{
+li img:hover {
     opacity: 0.5;
 }
 
-footer{
+footer {
     text-align: center;
 }
 
 /* タイマー */
-#time::before{
+#time::before {
     content: "経過時間：";
 }
 
-#time::after{
+#time::after {
     content: "秒";
 }
 
-.jankenGame{
+.jankenGame {
     display: flex;
     justify-content: space-between;
-    width:1400px;
-    margin: 0auto;
+    width: 1400px;
+    margin: 0 auto;
 
 }
 
-#janken{
+#janken {
     width: 400px;
-    margin: 0auto;
+    margin: 0 auto;
 
 }
 
-#result-list{
+#result-list {
+    width: 300px;
+    text-align-last: left;
+}
+
+.result-wrapper {
+    margin: 0 auto;
     width: 300px;
 }
 
-#judgment::before{
+#judgment::before {
     content: "勝敗：";
 }
 
-#score::before{
+#score::before {
     content: "今回：";
 }
 
-#score::after{
+#score::after {
     content: "点";
 }
 
-.inner-result::before{
+.inner-result::before {
     content: "合計：";
 }
 
-.inner-result::after{
+.inner-result::after {
     content: "点";
 }
 
-.outer-result{
-    display:none;
+.outer-result {
+    display: none;
 }
 
-.outer-result::before{
+.outer-result::before {
     content: "合計";
 }
 
-.outer-result::after{
+.outer-result::after {
     content: "点でした。次回も頑張ろう";
 }
 
-.often::before{
-    content: "試合回数：";  
+.often::before {
+    content: "試合回数：";
 }
 
-.average::before{
+.average::before {
     content: "平均点：";
 }
 
 
-#chart_div{
-width: 700px;
-height: 500px;
+#chart_div {
+    width: 700px;
+    height: 500px;
 }
-
-
-
-
