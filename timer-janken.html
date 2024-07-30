@@ -7,6 +7,7 @@
     <script src="js/jquery-2.1.3.min.js"></script>
     <link rel="stylesheet" href="css/sample.css">
     <title>タイマーじゃんけん</title>
+    <!-- 紙吹雪 -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -20,6 +21,11 @@
     </header>
 
     <main>
+    <!-- タイポグラフィー -->
+
+
+    <!-- タイポグラフィーここまで -->
+
     <div class="timer">
         <div>時間を決めてじゃんけんする</div>
         <input id="sec" type="text">
@@ -28,35 +34,37 @@
         <div id="time"></div>
     </div>
 
-     <div class="jankenGame">
-    <div id="janken">
-        <ul>
-            <li id="gu_btn" class="option">グー</li>
-            <li id="cho_btn" class="option">チョキ</li>
-            <li id="par_btn" class="option">パー</li>
-        </ul>
-        <div>コンピュータの出した手は？なに？</div>
-        <div><span id="pc_hands"></span></div>
-        <div id="result-list">
-            <div id="judgment">勝ちor負けorあいこ</div>
-            <div id="score"></div>
-            <div class="total inner-result"></div>
-            <div class="total outer-result"></div>
+    <div class="jankenGame">
+        <div id="janken">
+            <div>あなたの出す手は？</div>
+            <ul>
+                <li id="gu_btn" class="option"><img src="./img/gu.png" alt=""  width="100px"></li>
+                <li id="cho_btn" class="option"><img src="./img/choki.png" alt=""  width="100px"></li>
+                <li id="par_btn" class="option"><img src="./img/pa.png" alt=""  width="100px"></li>
+            </ul>
+            <div>コンピュータの出した手は？</div>
+            <div><span id="pc_hands"></span></div>
+            <div id="result-list">
+                <div id="judgment"></div>
+                <div id="score"></div>
+                <div class="total inner-result"></div>
+                <div class="total outer-result"></div>
+            </div>
+        </div>
+        
+        <div class="winRate">
+            <div id="winRate_div"></div>
+        </div>
+        <div class="chart">
+            <div id="chart_div"></div>
         </div>
     </div>
-    <p class="total outer-result"></p>
-    <div class="chart">
-        <div id="chart_div"></div>
-    </div>
-    </div>
-    <div>
-        <button><a href="./3s-janken.html">３秒じゃんけんもやってみる</a></button>
-    </div>
+    <div class="total outer-result"></div>
     </main>
 
-    <footer></footer>
-    <script>
-    // タイマー
+<footer><button><a href="./3s-janken.html">３秒じゃんけんもやってみる</a></button></footer>
+<script>
+// タイマーここから
     const time= document.querySelector("#time");
     const sec = document.querySelector("#sec");
     let count = 0;
@@ -67,145 +75,152 @@
             count++;
             time.innerHTML=count;
             if(count == sec.value){
-                $("#janken").hide();
-                $('.inner-result').hide();
+                $(".jankenGame").hide();
+                $('.timer').hide();
+                // $('.inner-result').hide();
                 $('.outer-result').show();
+
                 clearInterval(set_id);
             }
 
         },1000);
 
     });
+// タイマーここまで
 
 
 
+// じゃんけんここから  
+// 勝敗合計点数
+let total = 0; 
+let hand = "";//変数用意
+let judge = ""; //変数用意
+let score; //変数用意
 
-   
-    // 勝敗合計点数
-    let total = 0; 
-    let hand = "";//変数用意
-    let judge = ""; //変数用意
-    let score; //変数用意
+
+// グーを選んだ時
+$("#gu_btn").on("click",function(){
+const r =Math.ceil(Math.random()*3);//1.乱数(1~3)
+
+
+//2.if分岐処理
+
+if(r==1){
+    hand = '<img src="./img/gu.png" width="100px">';
+    judge = 'あいこ';
+    score = 0;
     
-
-    // グーを選んだ時
-    $("#gu_btn").on("click",function(){
-    const r =Math.ceil(Math.random()*3);//1.乱数(1~3)
-    
-
-    //2.if分岐処理
-
-    if(r==1){
-        hand = '<img src="./img/gu.png" width="270px">';
-        judge = 'あいこ';
-        score = 0;
-        
-    }
-    if(r==2){
-        hand = '<img src="./img/choki.png" width="300px">';
-        judge = '勝ち';
-        score = 1;
+}
+if(r==2){
+    hand = '<img src="./img/choki.png" width="100px">';
+    judge = '勝ち';
+    score = 1;
+    // 紙吹雪
     confetti({
-	       particleCount: 100,
-	       spread: 70,
-	       origin: { y: 0.6 }
-	     });
-    }
-    if(r==3){
-        hand = '<img src="./img/pa.png" width="300px">';
-        judge = '負け';
-        score = -1;
-    }
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+            });
+}
+if(r==3){
+    hand = '<img src="./img/pa.png" width="100px">';
+    judge = '負け';
+    score = -1;
+}
 
 
-    total += score;
+total += score;
 
-    //3.表示処理
-    $("#pc_hands").html(hand);
-    $("#judgment").html(judge);
-    $("#score").html(score);
-    $(".total").text(total);
+//3.表示処理
+$("#pc_hands").html(hand);
+$("#judgment").html(judge);
+$("#score").html(score);
+$(".total").text(total);
 
-    updateChart(total);
+updateChart(total);
 
-    });
+});
 
-    // チョキを選んだ時
-    $("#cho_btn").on("click",function(){
-    const r =Math.ceil(Math.random()*3);//1.乱数(1~3)
+// チョキを選んだ時
+$("#cho_btn").on("click",function(){
+const r =Math.ceil(Math.random()*3);//1.乱数(1~3)
 
-    //2.if分岐処理
-    if(r==1){
-        hand = '<img src="./img/gu.png" width="270px">';
-        judge = '負け';
-        score = -1;
-    }
-    if(r==2){
-        hand = '<img src="./img/choki.png" width="300px">';
-        judge = 'あいこ';
-        score = 0;
-    }
-    if(r==3){
-        hand = '<img src="./img/pa.png" width="300px">';
-        judge = '勝ち';
-        score = 1;
+//2.if分岐処理
+if(r==1){
+    hand = '<img src="./img/gu.png" width="100px">';
+    judge = '負け';
+    score = -1;
+}
+if(r==2){
+    hand = '<img src="./img/choki.png" width="100px">';
+    judge = 'あいこ';
+    score = 0;
+}
+if(r==3){
+    hand = '<img src="./img/pa.png" width="100px">';
+    judge = '勝ち';
+    score = 1;
+    // 紙吹雪
+    confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+        });
 
-        confetti({
-	       particleCount: 100,
-	       spread: 70,
-	       origin: { y: 0.6 }
-	     });
+}
 
-    }
+total += score;
 
-    total += score;
+//3.表示処理
+$("#pc_hands").html(hand);
+$("#judgment").html(judge);
+$("#score").html(score);
+$(".total").text(total);
 
-    //3.表示処理
-    $("#pc_hands").html(hand);
-    $("#judgment").html(judge);
-    $("#score").html(score);
-    $(".total").text(total);
+updateChart(total);
 
-    updateChart(total);
-    
-    });
-   
-    // パーを選んだ時
-    $("#par_btn").on("click",function(){
-    const r =Math.ceil(Math.random()*3);//1.乱数(1~3)
-    //2.if分岐処理
-    if(r==1){
-        hand = '<img src="./img/gu.png" width="270px">';
-        judge = '勝ち';
-        score = 1;
+});
 
-        confetti({
-	       particleCount: 100,
-	       spread: 70,
-	       origin: { y: 0.6 }
-	     });
-    }
-    if(r==2){
-        hand = '<img src="./img/choki.png" width="300px">';
-        judge = '負け';
-        score = -1;
-    }
-    if(r==3){
-        hand = '<img src="./img/pa.png" width="300px">';
-        judge = 'あいこ';
-        score = 0;
-    }
-    total += score;
-    
-    //3.表示処理
-    $("#pc_hands").html(hand);
-    $("#judgment").html(judge);
-    $("#score").html(score);
-    $(".total").text(total);
+// パーを選んだ時
+$("#par_btn").on("click",function(){
+const r =Math.ceil(Math.random()*3);//1.乱数(1~3)
+//2.if分岐処理
+if(r==1){
+    hand = '<img src="./img/gu.png" width="100px">';
+    judge = '勝ち';
+    score = 1;
+    // 紙吹雪
+    confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+        });
+}
+if(r==2){
+    hand = '<img src="./img/choki.png" width="100px">';
+    judge = '負け';
+    score = -1;
+}
+if(r==3){
+    hand = '<img src="./img/pa.png" width="100px">';
+    judge = 'あいこ';
+    score = 0;
+}
+total += score;
 
-    updateChart(total);
-    });
+//3.表示処理
+$("#pc_hands").html(hand);
+$("#judgment").html(judge);
+$("#score").html(score);
+$(".total").text(total);
 
+updateChart(total);
+});
+//じゃんけんここまで
+
+
+
+// チャートここから
 // Google Charts ライブラリを読み込む
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(initChart);
@@ -223,14 +238,14 @@ function initChart() {
     ]);
 
     options = {
-        title: 'Janken Total Score',
+        title: 'じゃんけんの合計点',
         curveType: 'function',
         legend: { position: 'bottom' },
         hAxis: {
-            title: 'Count'
+            title: 'n回目時点の合計点'
         },
         vAxis: {
-            title: 'Total Score'
+            title: '合計点'
         }
     };
 
@@ -245,9 +260,9 @@ function updateChart(total) {
     data.addRow([counts, total]);
     chart.draw(data, options);
 }
+// チャートここまで
 
 
-   
 </script>
 </body>
 

@@ -17,11 +17,9 @@ h1{
 }
 
 main{
-    border-bottom:1px solid #ccc;
+
 }
 footer{
-    background-color: #fff;
-    border-bottom:1px solid #ccc;
     text-align: center;
 }
 p{
@@ -31,22 +29,25 @@ p{
 }
 ul{
     padding: 0;
-    border-top: 1px solid #000000;
-    display:table;  /* 定義 */
-    table-layout: fixed;
+    display:flex;  /* 定義 */
+    justify-content: center;
     width:100%;
 }
+
 li{
     list-style-type:none;
-    border: 1px solid #666;
-    background-color: #FFF;
-    display:table-cell;  /* 定義 */
     cursor: pointer;
+    border-radius: 50%;
 }
-li:hover{
-    background: #0066CC;
-    color:#fff;
+
+li img:hover{
+    opacity: 0.5;
 }
+
+#particle{
+    display: none;
+}
+
 
 .jankenGame{
     display: flex;
@@ -55,12 +56,19 @@ li:hover{
     margin: 0auto;
 }
 
+
+
 #janken{
-    width: 800px;
+    width: 100%;
+    margin: 0auto;
+}
+
+#judgment::before{
+    content: "勝敗：";
 }
 
 #score::before{
-    content: "今回は";
+    content: "今回：";
 }
 
 #score::after{
@@ -68,7 +76,7 @@ li:hover{
 }
 
 .inner-result::before{
-    content: "合計";
+    content: "合計：";
 }
 
 .inner-result::after{
@@ -100,6 +108,7 @@ li:hover{
 width: 700px;
 height: 500px;
 }
+
 
 
 
