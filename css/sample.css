@@ -67,13 +67,8 @@ footer {
 }
 
 #result-list {
-    width: 300px;
+    width: 150px;
     text-align-last: left;
-}
-
-.result-wrapper {
-    margin: 0 auto;
-    width: 300px;
 }
 
 #judgment::before {
@@ -102,6 +97,22 @@ footer {
 
 .average::before {
     content: "平均点：";
+}
+
+.win::before {
+    content: "勝ち数：";
+}
+
+.lose::before {
+    content: "負け数：";
+}
+
+.even::before {
+    content: "あいこ数：";
+}
+
+.winRate::before {
+    content: "勝率：";
 }
 
 .outer-result {

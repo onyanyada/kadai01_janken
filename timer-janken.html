@@ -43,14 +43,16 @@
                     <div><span id="pc_hands"></span></div>
                 </div>
                 <div id="result-list">
-                    <div class="result-wrapper">
-                        <p id="judgment"></p>
-                        <p id="score"></p>
-                        <p class="total inner-result"></p>
-                        <p class="total outer-result"></p>
-                        <p class="often"></p>
-                        <p class="average"></p>
-                    </div>
+                    <p id="judgment"></p>
+                    <p id="score"></p>
+                    <p class="total inner-result"></p>
+                    <p class="total outer-result"></p>
+                    <p class="often"></p>
+                    <p class="average"></p>
+                    <p class="win"></p>
+                    <p class="lose"></p>
+                    <p class="even"></p>
+                    <p class="winRate"></p>
                 </div>
                 <div class="chart">
                     <div id="chart_div"></div>
@@ -96,6 +98,10 @@
         let score; //変数用意：点数
         let often = 0;//変数用意：回数
         let average; //変数用意：平均点
+        let win = 0;//勝った回数
+        let lose = 0;//負けた回数
+        let even = 0;//あいこ回数
+        let winRate = 0;//勝率
 
         // グーを選んだ時
         $("#gu_btn").on("click", function () {
@@ -108,12 +114,14 @@
                 hand = '<img src="./img/gu.png" width="100px">';
                 judge = 'あいこ';
                 score = 0;
+                even += 1;
 
             }
             if (r == 2) {
                 hand = '<img src="./img/choki.png" width="100px">';
                 judge = '勝ち';
                 score = 1;
+                win += 1;
                 // 紙吹雪
                 confetti({
                     particleCount: 100,
@@ -125,13 +133,13 @@
                 hand = '<img src="./img/pa.png" width="100px">';
                 judge = '負け';
                 score = -1;
-
+                lose += 1;
             }
 
             often++;
             total += score;
             average = Math.floor((total / often) * 10) / 10;
-
+            winRate = win / (win + lose);
 
             //3.表示処理
             $("#pc_hands").html(hand);
@@ -140,7 +148,10 @@
             $(".total").text(total);
             $(".often").html(often);
             $(".average").html(average);
-
+            $(".win").html(win);
+            $(".lose").html(lose);
+            $(".even").html(even);
+            $(".winRate").html(winRate);
             updateChart(total);
 
         });
@@ -154,17 +165,20 @@
                 hand = '<img src="./img/gu.png" width="100px">';
                 judge = '負け';
                 score = -1;
+                lose += 1;
                 $('')
             }
             if (r == 2) {
                 hand = '<img src="./img/choki.png" width="100px">';
                 judge = 'あいこ';
                 score = 0;
+                even += 1;
             }
             if (r == 3) {
                 hand = '<img src="./img/pa.png" width="100px">';
                 judge = '勝ち';
                 score = 1;
+                win += 1;
                 // 紙吹雪
                 confetti({
                     particleCount: 100,
@@ -176,6 +190,7 @@
             often++;
             total += score;
             average = Math.floor((total / often) * 10) / 10;
+            winRate = win / (win + lose);
 
             //3.表示処理
             $("#pc_hands").html(hand);
@@ -184,7 +199,10 @@
             $(".total").text(total);
             $(".often").html(often);
             $(".average").html(average);
-
+            $(".win").html(win);
+            $(".lose").html(lose);
+            $(".even").html(even);
+            $(".winRate").html(winRate);
             updateChart(total);
 
         });
@@ -197,6 +215,7 @@
                 hand = '<img src="./img/gu.png" width="100px">';
                 judge = '勝ち';
                 score = 1;
+                win += 1;
                 // 紙吹雪
                 confetti({
                     particleCount: 100,
@@ -208,15 +227,18 @@
                 hand = '<img src="./img/choki.png" width="100px">';
                 judge = '負け';
                 score = -1;
+                lose += 1;
             }
             if (r == 3) {
                 hand = '<img src="./img/pa.png" width="100px">';
                 judge = 'あいこ';
                 score = 0;
+                even += 1;
             }
             often++;
             total += score;
             average = Math.floor((total / often) * 10) / 10;
+            winRate = win / (win + lose);
 
             //3.表示処理
             $("#pc_hands").html(hand);
@@ -225,7 +247,10 @@
             $(".total").text(total);
             $(".often").html(often);
             $(".average").html(average);
-
+            $(".win").html(win);
+            $(".lose").html(lose);
+            $(".even").html(even);
+            $(".winRate").html(winRate);
             updateChart(total);
         });
         //じゃんけんここまで
