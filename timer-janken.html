@@ -22,44 +22,46 @@
     </header>
 
     <main>
-        <div class="wrapper">
-            <div class="timer">
-                <p>時間を決めてじゃんけんする</p>
-                <input id="sec" type="text">
-                <button id="start">開始</button>
+        <div id="particles-js">
+            <div id="wrapper">
+                <div class="timer">
+                    <p>時間を決めてじゃんけんする</p>
+                    <input id="sec" type="text">
+                    <button id="start">開始</button>
 
-                <p id="time"></p>
-            </div>
+                    <p id="time"></p>
+                </div>
 
-            <div class="jankenGame">
-                <div id="janken">
-                    <p>あなたの出す手は？</p>
-                    <ul>
-                        <li id="gu_btn" class="option"><img src="./img/gu.png" alt="" width="100px"></li>
-                        <li id="cho_btn" class="option"><img src="./img/choki.png" alt="" width="100px"></li>
-                        <li id="par_btn" class="option"><img src="./img/pa.png" alt="" width="100px"></li>
-                    </ul>
-                    <p>コンピュータの出した手は？</p>
-                    <div><span id="pc_hands"></span></div>
+                <div class="jankenGame">
+                    <div id="janken">
+                        <p>あなたの出す手は？</p>
+                        <ul>
+                            <li id="gu_btn" class="option"><img src="./img/gu.png" alt="" width="100px"></li>
+                            <li id="cho_btn" class="option"><img src="./img/choki.png" alt="" width="100px"></li>
+                            <li id="par_btn" class="option"><img src="./img/pa.png" alt="" width="100px"></li>
+                        </ul>
+                        <p>コンピュータの出した手は？</p>
+                        <div><span id="pc_hands"></span></div>
+                    </div>
+                    <div id="result-list">
+                        <p id="judgment"></p>
+                        <p id="score"></p>
+                        <p class="total inner-result"></p>
+                        <p class="total outer-result"></p>
+                        <p class="often"></p>
+                        <p class="average"></p>
+                        <p class="win"></p>
+                        <p class="lose"></p>
+                        <p class="even"></p>
+                        <p class="winRate"></p>
+                    </div>
+                    <div class="chart">
+                        <div id="chart_div"></div>
+                    </div>
                 </div>
-                <div id="result-list">
-                    <p id="judgment"></p>
-                    <p id="score"></p>
-                    <p class="total inner-result"></p>
-                    <p class="total outer-result"></p>
-                    <p class="often"></p>
-                    <p class="average"></p>
-                    <p class="win"></p>
-                    <p class="lose"></p>
-                    <p class="even"></p>
-                    <p class="winRate"></p>
-                </div>
-                <div class="chart">
-                    <div id="chart_div"></div>
-                </div>
+                <p class="total outer-result"></p>
+                <button class="repeat"><a href="timer-janken.html">もう一回やる</a></button>
             </div>
-            <p class="total outer-result"></p>
-            <button class="repeat"><a href="timer-janken.html">もう一回やる</a></button>
         </div>
     </main>
 
@@ -139,7 +141,7 @@
             often++;
             total += score;
             average = Math.floor((total / often) * 10) / 10;
-            winRate = win / (win + lose);
+            winRate = Math.floor((win / (win + lose)) * 10) / 10;
 
             //3.表示処理
             $("#pc_hands").html(hand);
@@ -190,7 +192,7 @@
             often++;
             total += score;
             average = Math.floor((total / often) * 10) / 10;
-            winRate = win / (win + lose);
+            winRate = Math.floor((win / (win + lose)) * 10) / 10;
 
             //3.表示処理
             $("#pc_hands").html(hand);
@@ -238,7 +240,7 @@
             often++;
             total += score;
             average = Math.floor((total / often) * 10) / 10;
-            winRate = win / (win + lose);
+            winRate = Math.floor((win / (win + lose)) * 10) / 10;
 
             //3.表示処理
             $("#pc_hands").html(hand);
