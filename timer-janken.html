@@ -93,8 +93,7 @@
 
 
         // じゃんけんここから  
-        // 勝敗合計点数
-        let total = 0;
+        let total = 0;// 勝敗合計点数
         let hand = "";//変数用意
         let judge = ""; //変数用意
         let score; //変数用意：点数
@@ -138,24 +137,11 @@
                 lose += 1;
             }
 
-            often++;
-            total += score;
-            average = Math.floor((total / often) * 10) / 10;
-            winRate = Math.floor((win / (win + lose)) * 10) / 10;
+            // 計算
+            jankenCalc();
 
             //3.表示処理
-            $("#pc_hands").html(hand);
-            $("#judgment").html(judge);
-            $("#score").html(score);
-            $(".total").text(total);
-            $(".often").html(often);
-            $(".average").html(average);
-            $(".win").html(win);
-            $(".lose").html(lose);
-            $(".even").html(even);
-            $(".winRate").html(winRate);
-            updateChart(total);
-
+            jankenView();
         });
 
         // チョキを選んだ時
@@ -168,7 +154,6 @@
                 judge = '負け';
                 score = -1;
                 lose += 1;
-                $('')
             }
             if (r == 2) {
                 hand = '<img src="./img/choki.png" width="100px">';
@@ -189,24 +174,11 @@
                 });
 
             }
-            often++;
-            total += score;
-            average = Math.floor((total / often) * 10) / 10;
-            winRate = Math.floor((win / (win + lose)) * 10) / 10;
 
+            // 計算
+            jankenCalc();
             //3.表示処理
-            $("#pc_hands").html(hand);
-            $("#judgment").html(judge);
-            $("#score").html(score);
-            $(".total").text(total);
-            $(".often").html(often);
-            $(".average").html(average);
-            $(".win").html(win);
-            $(".lose").html(lose);
-            $(".even").html(even);
-            $(".winRate").html(winRate);
-            updateChart(total);
-
+            jankenView();
         });
 
         // パーを選んだ時
@@ -237,12 +209,24 @@
                 score = 0;
                 even += 1;
             }
+
+            // 計算
+            jankenCalc();
+
+            //3.表示処理
+            jankenView();
+        });
+
+        //計算
+        const jankenCalc = () => {
             often++;
             total += score;
             average = Math.floor((total / often) * 10) / 10;
             winRate = Math.floor((win / (win + lose)) * 10) / 10;
+        }
 
-            //3.表示処理
+        //3.表示処理
+        const jankenView = () => {
             $("#pc_hands").html(hand);
             $("#judgment").html(judge);
             $("#score").html(score);
@@ -254,7 +238,7 @@
             $(".even").html(even);
             $(".winRate").html(winRate);
             updateChart(total);
-        });
+        }
         //じゃんけんここまで
 
 

@@ -105,13 +105,9 @@
 
             total += score;
 
-            //3.表示処理
-            $("#pc_hands").html(hand);
-            $("#judgment").html(judge);
-            $("#score").html(score);
-            $(".total").text(total);
 
-            updateChart(total);
+            //3.表示処理
+            janken3View();
 
         });
 
@@ -145,13 +141,9 @@
 
             total += score;
 
-            //3.表示処理
-            $("#pc_hands").html(hand);
-            $("#judgment").html(judge);
-            $("#score").html(score);
-            $(".total").text(total);
 
-            updateChart(total);
+            //3.表示処理
+            janken3View();
 
         });
 
@@ -184,11 +176,16 @@
 
 
             //3.表示処理
+            janken3View();
+        });
+
+        //3.表示処理
+        const janken3View = () => {
             $("#pc_hands").html(hand);
             $("#judgment").html(judge);
             $("#score").html(score);
             $(".total").text(total);
-        });
+        }
 
 
 
