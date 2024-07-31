@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper {
+    /*描画されるテキストを中央寄せにする*/
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+}
+
+#particle {
+    width: 100%;
+    height: 100vh;
+    vertical-align: bottom;
+    /*canvasタグ下に余白が生まれるのを防ぐ*/
+}
+
+canvas {
+    background: #F5F1E9;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+}
+
+.topBtns {
+    margin-top: -100px;
+    text-align: center;
+}
+
+button {
+    width: 200px;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    width: 1005px;
+}
+
+a:hover {
+    color: #62abff;
+}

@@ -21,6 +21,16 @@ p {
     text-align: center;
 }
 
+a {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #32b9e2;
+}
+
 ul {
     padding: 0;
     display: flex;
