@@ -32,8 +32,10 @@ $('#start').click(function () {
                 $(".comment").html('<p>合格点より上！</p><img src="./img/gokaku.png" width="300px">');
             } else if (total == inputScore) {
                 $(".comment").html('<p>ぎり合格！</p><img src="./img/bimyo.png" width="300px">');
-            } else {
+            } else if (total < inputScore) {
                 $(".comment").html('<p>不合格</p><img src="./img/hugokaku.png" width="300px">');
+            } else {
+                $(".comment").html('<p>今回は合否なし</p><img src="./img/null.png" width="300px">');
             }
         }
 
