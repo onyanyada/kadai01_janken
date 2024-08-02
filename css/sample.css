@@ -67,6 +67,11 @@ footer {
     text-align: center;
 }
 
+/* 合格点設定 */
+#passingScore::after {
+    content: "点以上を目指そう！";
+}
+
 /* タイマー */
 #time::before {
     content: "経過時間：";

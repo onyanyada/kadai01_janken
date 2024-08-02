@@ -1,9 +1,21 @@
+// 合格点設定
+$('#decide').click(function () {
+    $("#passingScore").text($("#inputScore").val());
+});
+
+
 // タイマーここから
 const time = document.querySelector("#time");
 const sec = document.querySelector("#sec");
+// const inputScore = document.querySelector("#inputScore");
 let count = 0;
 
 $('#start').click(function () {
+    // ここでinputScoreを数値として取得
+    const inputValue = $("#inputScore").val(); // 例えば、"45" という文字列が取得されるとします。
+    const inputScore = parseInt(inputValue, 10); // "45" という文字列を 10 進数の整数 45 に変換します。
+    // const inputScore = parseInt($("#inputScore").val(), 10); //一行にまとめた場合
+
 
     const set_id = setInterval(function () {
         count++;
@@ -13,15 +25,15 @@ $('#start').click(function () {
             $('.timer').hide();
             $('.outer-result').show();
             $('.repeat').show();
+            $(".passSet").hide();
             clearInterval(set_id);
-            if (total >= 1) {
-                $(".comment").html('<p>合格</p><img src="./img/gokaku.png" width="300px">');
-            } else if (total == 0) {
-                $(".comment").html('<p>うーん</p><img src="./img/bimyo.png" width="300px">');
+            if (total > inputScore) {
+                $(".comment").html('<p>合格点より上！</p><img src="./img/gokaku.png" width="300px">');
+            } else if (total == inputScore) {
+                $(".comment").html('<p>ぎり合格！</p><img src="./img/bimyo.png" width="300px">');
             } else {
                 $(".comment").html('<p>不合格</p><img src="./img/hugokaku.png" width="300px">');
             }
-
         }
 
     }, 1000);

@@ -26,14 +26,20 @@
     <main>
         <div id="particles-js">
             <div id="wrapper">
-                <div class="timer">
-                    <p>時間を決めてじゃんけんする</p>
-                    <input id="sec" type="text">
-                    <button id="start">開始</button>
-
-                    <p id="time"></p>
+                <div class="requirement">
+                    <div class="passSet">
+                        <p>合格点を決める</p>
+                        <input id="inputScore" type="number">
+                        <button id="decide">設定</button>
+                        <p id="passingScore"></p>
+                    </div>
+                    <div class="timer">
+                        <p>時間を決める</p>
+                        <input id="sec" type="text">
+                        <button id="start">開始</button>
+                        <p id="time"></p>
+                    </div>
                 </div>
-
                 <div class="jankenGame">
                     <div id="janken">
                         <p>あなたの出す手は？</p>
