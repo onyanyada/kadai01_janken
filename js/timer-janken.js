@@ -15,11 +15,11 @@ $('#start').click(function () {
             $('.repeat').show();
             clearInterval(set_id);
             if (total >= 1) {
-                $(".comment").html("合格");
+                $(".comment").html('<p>合格</p><img src="./img/gokaku.png" width="300px">');
             } else if (total == 0) {
-                $(".comment").html("0点なので微妙");
+                $(".comment").html('<p>うーん</p><img src="./img/bimyo.png" width="300px">');
             } else {
-                $(".comment").html("不合格");
+                $(".comment").html('<p>不合格</p><img src="./img/hugokaku.png" width="300px">');
             }
 
         }
