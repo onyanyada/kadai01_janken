@@ -7,13 +7,28 @@ body {
 
 header {
     background-color: #fff;
-    border-bottom: 1px solid #ccc;
     text-align: center;
     height: 50px;
 }
 
 h1 {
     font-size: 30px;
+    background: linear-gradient(transparent 50%, rgba(255, 220, 123) 50%);
+    display: inline;
+
+    /* 背景の繰り返しを停止 */
+    background-repeat: no-repeat;
+
+    /* マーカーの横方向を0にして縮める */
+    background-size: 0% 100%;
+
+    /* マーカーが引かれる速度を指定 */
+    transition: background-size 1.5s;
+}
+
+h1.on {
+    /* 横方向を100%にして、マーカーを引く */
+    background-size: 100% 100%;
 }
 
 p {
@@ -144,4 +159,13 @@ footer {
 #chart_div {
     width: 700px;
     height: 500px;
+}
+
+/* 3秒じゃんけん */
+#btnShowBox {
+    cursor: pointer;
+}
+
+#btnShowBox:hover {
+    color: #17b4f1;
 }

@@ -65,7 +65,7 @@
         </div>
     </main>
 
-    <footer><button><a href="top.html">トップに戻る</a></button></footer>
+    <footer><button><a href="index.html">トップに戻る</a></button></footer>
     <script>
         // タイマーここから
         const time = document.querySelector("#time");
@@ -96,9 +96,9 @@
         let total = 0;// 勝敗合計点数
         let hand = "";//変数用意
         let judge = ""; //変数用意
-        let score; //変数用意：点数
+        let score = 0; //変数用意：点数
         let often = 0;//変数用意：回数
-        let average; //変数用意：平均点
+        let average = 0; //変数用意：平均点
         let win = 0;//勝った回数
         let lose = 0;//負けた回数
         let even = 0;//あいこ回数
@@ -284,6 +284,22 @@
             chart.draw(data, options);
         }
         // チャートここまで
+
+        // マーカー
+        window.addEventListener('load', function () {
+            const height = window.innerHeight;                    //画面の高さを取得
+            const scroll = this.pageYOffset;                      //スクロール量
+            const marker = document.querySelectorAll('h1');  //マーカーを引く要素を取得
+            const value = scroll - height + 300                   //後ろの数字を弄ることで、イベント位置をずらす
+
+            // markerクラスを持っている要素全てに処理を行う
+            marker.forEach(function (element) {
+                //要素が画面内の指定の位置に来たら「on」クラスをつける
+                if (scroll > element.getBoundingClientRect().top + value) {
+                    element.classList.add('on')
+                }
+            });
+        })
 
 
     </script>

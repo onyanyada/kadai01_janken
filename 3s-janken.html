@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width">
     <script src="js/jquery-2.1.3.min.js"></script>
     <link rel="stylesheet" href="css/sample.css">
-    <title>じゃんけん</title>
+    <title>3秒じゃんけん</title>
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
 
@@ -15,9 +15,7 @@
 <body>
 
     <header>
-        <div>
-            <h1>3秒じゃんけん</h1>
-        </div>
+        <h1>3秒じゃんけん</h1>
     </header>
 
     <main>
@@ -46,7 +44,7 @@
         </div>
         <p class="total outer-result"></p>
         <div>
-            <button><a href="top.html">トップに戻る</a></button>
+            <button><a href="index.html">トップに戻る</a></button>
         </div>
     </main>
 
@@ -58,9 +56,10 @@
             $('.outer-result').hide();
             $('#btnShowBox').fadeOut()
             setTimeout(function () {
+                $('#btnShowBox').show()
                 $('#temporaryBox').fadeOut()
                 $('.outer-result').show()
-                $('#btnShowBox').show()
+
 
             }, 3000);
         });
@@ -71,7 +70,7 @@
         let total = 0;
         let hand = "";//変数用意
         let judge = ""; //変数用意
-        let score; //変数用意
+        let score = 0; //変数用意
 
 
         // グーを選んだ時
@@ -188,6 +187,22 @@
             $("#score").html(score);
             $(".total").text(total);
         }
+
+        // マーカー
+        window.addEventListener('load', function () {
+            const height = window.innerHeight;                    //画面の高さを取得
+            const scroll = this.pageYOffset;                      //スクロール量
+            const marker = document.querySelectorAll('h1');  //マーカーを引く要素を取得
+            const value = scroll - height + 300                   //後ろの数字を弄ることで、イベント位置をずらす
+
+            // markerクラスを持っている要素全てに処理を行う
+            marker.forEach(function (element) {
+                //要素が画面内の指定の位置に来たら「on」クラスをつける
+                if (scroll > element.getBoundingClientRect().top + value) {
+                    element.classList.add('on')
+                }
+            });
+        })
 
 
 
