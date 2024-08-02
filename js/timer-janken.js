@@ -1,6 +1,7 @@
 // 合格点設定
 $('#decide').click(function () {
     $("#passingScore").text($("#inputScore").val());
+    $("#passingScore").addClass('scoretxt');
 });
 
 

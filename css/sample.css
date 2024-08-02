@@ -9,6 +9,7 @@ header {
     background-color: #fff;
     text-align: center;
     height: 50px;
+    margin-bottom: 50px;
 }
 
 h1 {
@@ -67,8 +68,16 @@ footer {
     text-align: center;
 }
 
+/* 条件設定 */
+.requirement {
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    margin: 0 auto;
+}
+
 /* 合格点設定 */
-#passingScore::after {
+.scoretxt::after {
     content: "点以上を目指そう！";
 }
 
@@ -86,7 +95,7 @@ footer {
     justify-content: space-between;
     width: 1400px;
     margin: 0 auto;
-
+    padding-top: 50px;
 }
 
 #janken {
