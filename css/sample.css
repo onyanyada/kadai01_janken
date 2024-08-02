@@ -91,7 +91,7 @@ footer {
 }
 
 #result-list {
-    width: 150px;
+    width: 250px;
     text-align-last: left;
 }
 
@@ -135,8 +135,32 @@ footer {
     content: "あいこ数：";
 }
 
+.guWin::before {
+    content: "グーの勝ち数：";
+}
+
+.choWin::before {
+    content: "チョキの勝ち数：";
+}
+
+.paWin::before {
+    content: "パーの勝ち数：";
+}
+
 .winRate::before {
     content: "勝率：";
+}
+
+.guWinRate::before {
+    content: "グーの勝率：";
+}
+
+.choWinRate::before {
+    content: "チョキの勝率：";
+}
+
+.paWinRate::before {
+    content: "パーの勝率：";
 }
 
 .outer-result {
@@ -159,6 +183,11 @@ footer {
 #chart_div {
     width: 700px;
     height: 500px;
+}
+
+#pie_chart_div {
+    width: 200px;
+    height: 200px;
 }
 
 /* 3秒じゃんけん */

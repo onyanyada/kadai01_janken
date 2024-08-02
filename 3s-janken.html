@@ -62,7 +62,7 @@
 
 
             }, 3000);
-        });
+        })
 
 
 
@@ -187,6 +187,61 @@
             $("#score").html(score);
             $(".total").text(total);
         }
+
+        // 円グラフここから
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            let data = google.visualization.arrayToDataTable([
+                ['勝った手', '勝った回数'],
+                ['グー', guWin],
+                ['チョキ', choWin],
+                ['パー', paWin],
+            ]);
+
+            let options = {
+                chartArea: {
+                    left: 20,
+                    right: 20,
+                    top: 20,
+                    bottom: 20,
+                    width: '100%',
+                },
+                //fontSize: 20,
+                legend: {
+                    alignment: 'center',
+                },
+                tooltip: {
+                    text: 'both',
+                    textStyle: {
+                        fontSize: 20,
+                    },
+                    showColorCode: 'true',
+                },
+            };
+
+            let chart = new google.visualization.PieChart(document.getElementById('pie_chart_div'));
+
+            chart.draw(data, options);
+        }
+
+        // 円グラフの更新
+        function updateDrawChart() {
+            data = google.visualization.arrayToDataTable([
+                ['勝った手', '勝った回数'],
+                ['グー', guWin],
+                ['チョキ', choWin],
+                ['パー', paWin],
+            ]);
+            chart.draw(data, options);
+        }
+
+
+        // 円グラフここまで
 
         // マーカー
         window.addEventListener('load', function () {

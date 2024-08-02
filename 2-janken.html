@@ -12,7 +12,6 @@
         src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
     <!-- Google Chartsのライブラリ -->
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 </head>
@@ -55,16 +54,13 @@
                         <p class="win"></p>
                         <p class="lose"></p>
                         <p class="even"></p>
-                        <p class="guWin"></p>
-                        <p class="choWin"></p>
-                        <p class="paWin"></p>
                         <p class="winRate"></p>
-                        <p class="guWinRate"></p>
-                        <p class="choWinRate"></p>
-                        <p class="paWinRate"></p>
                     </div>
                     <div class="chart">
                         <div id="chart_div"></div>
+                    </div>
+                    <div class="pie-chart">
+                        <div id="pie_chart_div"></div>
                     </div>
                 </div>
                 <p class="total outer-result"></p>
@@ -110,16 +106,10 @@
         let win = 0;//勝った回数
         let lose = 0;//負けた回数
         let even = 0;//あいこ回数
-        let guWin = 0;//グーで勝った回数
-        let choWin = 0;//チョキで勝った回数
-        let paWin = 0;//パーで勝った回数
-        let guLose = 0;//グーで負けた回数
-        let choLose = 0;//チョキで負けた回数
-        let paLose = 0;//パーで負けた回数       
+        let guWin = 0;//グーで買った回数
+        let choWin = 0;//チョキで買った回数
+        let paWin = 0;//パーで買った回数
         let winRate = 0;//勝率
-        let guWinRate = 0;//グーの勝率
-        let choWinRate = 0;//チョキの勝率
-        let paWinRate = 0;//パーの勝率
 
         // グーを選んだ時
         $("#gu_btn").on("click", function () {
@@ -153,7 +143,6 @@
                 judge = '負け';
                 score = -1;
                 lose += 1;
-                guLose += 1;
             }
 
             // 計算
@@ -173,7 +162,6 @@
                 judge = '負け';
                 score = -1;
                 lose += 1;
-                choLose += 1;
             }
             if (r == 2) {
                 hand = '<img src="./img/choki.png" width="100px">';
@@ -186,7 +174,6 @@
                 judge = '勝ち';
                 score = 1;
                 win += 1;
-                choWin += 1;
                 // 紙吹雪
                 confetti({
                     particleCount: 100,
@@ -211,7 +198,6 @@
                 judge = '勝ち';
                 score = 1;
                 win += 1;
-                paWin += 1;
                 // 紙吹雪
                 confetti({
                     particleCount: 100,
@@ -224,7 +210,6 @@
                 judge = '負け';
                 score = -1;
                 lose += 1;
-                paLose += 1;
             }
             if (r == 3) {
                 hand = '<img src="./img/pa.png" width="100px">';
@@ -246,53 +231,47 @@
             total += score;
             average = Math.floor((total / often) * 10) / 10;
             winRate = Math.floor((win / (win + lose)) * 10) / 10;
-            guWinRate = Math.floor((guWin / (guWin + guLose)) * 10) / 10;
-            choWinRate = Math.floor((choWin / (choWin + choLose)) * 10) / 10;
-            paWinRate = Math.floor((paWin / (paWin + paLose)) * 10) / 10;
         }
 
         //3.表示処理
-        const jankenView = () => {
-            $("#pc_hands").html(hand);
-            $("#judgment").html(judge);
-            $("#score").html(score);
-            $(".total").text(total);
-            $(".often").html(often);
-            $(".average").html(average);
-            $(".win").html(win);
-            $(".lose").html(lose);
-            $(".even").html(even);
-            $(".guWin").html(guWin);
-            $(".choWin").html(choWin);
-            $(".paWin").html(paWin);
-            $(".winRate").html(winRate);
-            $(".guWinRate").html(guWinRate);
-            $(".choWinRate").html(choWinRate);
-            $(".paWinRate").html(paWinRate);
-            updateChart(score);
-        }
+        // const jankenView = () => {
+        //     $("#pc_hands").html(hand);
+        //     $("#judgment").html(judge);
+        //     $("#score").html(score);
+        //     $(".total").text(total);
+        //     $(".often").html(often);
+        //     $(".average").html(average);
+        //     $(".win").html(win);
+        //     $(".lose").html(lose);
+        //     $(".even").html(even);
+        //     $(".winRate").html(winRate);
+        //     updateChart(score);
+        //     updatePieChart();
+        // }
         //じゃんけんここまで
 
 
 
         // 折れ線チャートここから
-        // Google Charts ライブラリを読み込む
         google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(initChart);
+        google.charts.setOnLoadCallback(initCharts);
 
-        let chart;
-        let data;
-        let options;
+        function initCharts() {
+            initLineChart();
+            drawPieChart();
+        }
+        // グローバル変数
+        let lineChart, lineData, lineOptions, pieChart, pieData, pieOptions;
         let counts = 0; // 回数カウント用変数
 
-        // グラフの初期化
-        function initChart() {
-            data = google.visualization.arrayToDataTable([
+        // 折れ線チャートの初期化
+        function initLineChart() {
+            lineData = google.visualization.arrayToDataTable([
                 ['Count', 'Score'],
                 [0, 0]
             ]);
 
-            options = {
+            lineOptions = {
                 title: 'n回目のじゃんけんの点数',
                 curveType: 'function',
                 legend: { position: 'bottom' },
@@ -304,18 +283,77 @@
                 }
             };
 
-            chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
-            chart.draw(data, options);
+            lineChart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            lineChart.draw(lineData, lineOptions);
         }
 
-        // グラフの更新
-        function updateChart(score) {
+        // 折れ線チャートの更新
+        function updateLineChart(score) {
             counts++;
-            data.addRow([counts, score]);
-            chart.draw(data, options);
+            lineData.addRow([counts, score]);
+            lineChart.draw(lineData, lineOptions);
         }
-        // 折れ線チャートここまで
+
+        // 円グラフの初期化
+        function drawPieChart() {
+            pieData = google.visualization.arrayToDataTable([
+                ['勝った手', '勝った回数'],
+                ['グー', 0],
+                ['チョキ', 0],
+                ['パー', 0],
+            ]);
+
+            pieOptions = {
+                chartArea: {
+                    left: 20,
+                    right: 20,
+                    top: 20,
+                    bottom: 20,
+                    width: '100%',
+                },
+                legend: {
+                    alignment: 'center',
+                },
+                tooltip: {
+                    text: 'both',
+                    textStyle: {
+                        fontSize: 20,
+                    },
+                    showColorCode: 'true',
+                },
+            };
+
+            pieChart = new google.visualization.PieChart(document.getElementById('pie_chart_div'));
+            pieChart.draw(pieData, pieOptions);
+        }
+
+        // 円グラフの更新
+        function updatePieChart(guWin, choWin, paWin) {
+            pieData = google.visualization.arrayToDataTable([
+                ['勝った手', '勝った回数'],
+                ['グー', guWin],
+                ['チョキ', choWin],
+                ['パー', paWin],
+            ]);
+            pieChart.draw(pieData, pieOptions);
+        }
+
+        // じゃんけんの結果表示処理
+        const jankenView = () => {
+            $("#pc_hands").html(hand);
+            $("#judgment").html(judge);
+            $("#score").html(score);
+            $(".total").text(total);
+            $(".often").html(often);
+            $(".average").html(average);
+            $(".win").html(win);
+            $(".lose").html(lose);
+            $(".even").html(even);
+            $(".winRate").html(winRate);
+            updateLineChart(score);
+            updatePieChart();
+        }
+
 
 
 
