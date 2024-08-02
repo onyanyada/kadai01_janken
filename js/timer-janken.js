@@ -8,10 +8,10 @@ $('#decide').click(function () {
 // タイマーここから
 const time = document.querySelector("#time");
 const sec = document.querySelector("#sec");
-// const inputScore = document.querySelector("#inputScore");
 let count = 0;
 
 $('#start').click(function () {
+    $("#time").addClass('timetxt');
     // ここでinputScoreを数値として取得
     const inputValue = $("#inputScore").val(); // 例えば、"45" という文字列が取得されるとします。
     const inputScore = parseInt(inputValue, 10); // "45" という文字列を 10 進数の整数 45 に変換します。

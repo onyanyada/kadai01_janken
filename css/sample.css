@@ -82,11 +82,11 @@ footer {
 }
 
 /* タイマー */
-#time::before {
+.timetxt::before {
     content: "経過時間：";
 }
 
-#time::after {
+.timetxt::after {
     content: "秒";
 }
 
