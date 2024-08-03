@@ -6,9 +6,10 @@ $('#decide').click(function () {
 
 
 // タイマーここから
-const time = document.querySelector("#time");
-const sec = document.querySelector("#sec");
+const time = document.querySelector("#time");//今の時間
+const sec = document.querySelector("#sec");//設定時間
 let count = 0;
+
 
 $('#start').click(function () {
     $("#time").addClass('timetxt');
@@ -18,9 +19,19 @@ $('#start').click(function () {
     // const inputScore = parseInt($("#inputScore").val(), 10); //一行にまとめた場合
 
 
+    // プログレスバー
+    const progressBarSec = sec.value;
+
+
     const set_id = setInterval(function () {
         count++;
         time.innerHTML = count;
+
+        // プログレスバー
+        $('.progressBar').css('width', `${progressBarSec * 30}px`);
+        $('.innerBar').css('width', `${count * 30}px`);
+
+
         if (count == sec.value) {
             $(".jankenGame").hide();
             $('.timer').hide();
@@ -28,6 +39,7 @@ $('#start').click(function () {
             $('.repeat').show();
             $(".passSet").hide();
             clearInterval(set_id);
+            // 合格点表示
             if (total > inputScore) {
                 $(".comment").html('<p>合格点より上！</p><img src="./img/gokaku.png" width="300px">');
             } else if (total == inputScore) {

@@ -90,6 +90,20 @@ footer {
     content: "秒";
 }
 
+/* プログレスバー */
+.progressBar {
+    background-color: #fff3d8;
+    height: 10px;
+    width: 0px;
+    margin: 0 auto;
+}
+
+.innerBar {
+    height: 100%;
+    width: 0;
+    background-color: #ffcb3a;
+}
+
 .jankenGame {
     display: flex;
     justify-content: space-between;
