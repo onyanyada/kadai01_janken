@@ -218,6 +218,17 @@ footer {
     height: 200px;
 }
 
+
+/* 猫育てる */
+.raise {
+    width: 200px;
+}
+
+.raise img {
+    height: 0px;
+    width: auto;
+}
+
 /* 3秒じゃんけん */
 #btnShowBox {
     cursor: pointer;

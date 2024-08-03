@@ -19,7 +19,7 @@ $('#start').click(function () {
     // const inputScore = parseInt($("#inputScore").val(), 10); //一行にまとめた場合
 
 
-    // プログレスバー
+    // プログレスバーの設定時間
     const progressBarSec = sec.value;
 
 
@@ -229,7 +229,7 @@ const jankenView = () => {
     $(".choWinRate").html(choWinRate);
     $(".paWinRate").html(paWinRate);
     updateChart(score);
-
+    $('.raise img').css('height', `${total * 50}px`);
 
 
 }
